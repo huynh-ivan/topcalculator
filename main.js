@@ -19,11 +19,6 @@ function divide(operand1, operand2) {
 }
 
 // create an operate function that takes in two operands and an operator as parameters
-// it seems like there is conditional logic involved here
-// if the operator is `+`, do `add` function w/ the two arguments
-// if the operator is `-`, do `subtract` function w/ the two arguments
-// if the operator is `*`, do `multiply` function w/ the two arguments
-// if the operator is `/`, do `divide` function w/ the two arguments
 
 function operate(operand1, operator, operand2) {
     if (operator === `+`) {
@@ -38,9 +33,17 @@ function operate(operand1, operator, operand2) {
         return multiply(operand1, operand2)
     }
 
-    if (operator === `\\`) {
+    if (operator === `/`) {
+        console.log(operator);
         return divide(operand1, operand2)
     }
+
+    if (operator !== `+` && operator !== `-` && operator !== `*` && operator !== `/`) {
+        return `Invalid operator provided. +, - , * , / are valid operators`
+    }
 }
+
+
+
 
 // make a button that calls the operate function when cliked or keydown'd
