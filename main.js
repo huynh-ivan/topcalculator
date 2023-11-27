@@ -43,7 +43,5 @@ function operate(operand1, operator, operand2) {
     }
 }
 
-
-
-
-// make a button that calls the operate function when cliked or keydown'd
+// functions that populate the displayOutput when buttons are clicked
+// todo: write the pseudocode that describes what happens when a user interacts with a calculator. Need to figure out states + information storage
