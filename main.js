@@ -4,7 +4,9 @@ function add(operand1, operand2) {
 }
 
 // create the subtract function
-
+function subtract(operand1, operand2) {
+    return operand1 - operand2
+}
 
 // create the multiply function
 
