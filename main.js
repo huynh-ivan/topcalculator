@@ -30,15 +30,15 @@ function operate(operand1, operator, operand2) {
         return add(operand1, operand2)
     }
 
-    if (operator === '-') {
+    if (operator === `-`) {
         return subtract(operand1, operand2)
     }
 
-    if (operator === '*') {
+    if (operator === `*`) {
         return multiply(operand1, operand2)
     }
 
-    if (operator === '\\') {
+    if (operator === `\\`) {
         return divide(operand1, operand2)
     }
 }
