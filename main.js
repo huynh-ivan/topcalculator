@@ -63,7 +63,7 @@ function setButtonIDs() {
     }
 }
 
-function makeOperand() {
+function updateOperand() {
     // if the displayValue, set the value to the number
     if (displayOutput.textContent === 0) { }
     // if the value is not 0, concat the two values together into a string
@@ -71,7 +71,7 @@ function makeOperand() {
 
 // Event Handlers
 numberButtons.forEach(button => {
-    button.addEventListener('click', makeOperand)
+    button.addEventListener('click', updateOperand)
 })
 
 
