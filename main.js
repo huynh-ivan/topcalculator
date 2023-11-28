@@ -44,13 +44,42 @@ function operate(operand1, operator, operand2) {
 }
 
 // when I click a number button
-// update the display value
 // if value is 0, set the value to the number
 // if the value is not 0, concat the two values together into a string
 
+// Select individual buttons and the displayOutput div
+const displayValue = 0;
 const displayOutput = document.querySelector('.displayOutput');
-console.log(displayOutput);
-displayOutput.textContent = `hey this is an output`;
+displayOutput.textContent = displayValue;
+
+const numberButtons = document.querySelectorAll('.number');
+
+// set the id of each button
+function setButtonIDs() {
+    for (let i = 0; i < numberButtons.length; i++) {
+        numberButtons[i].id = i;
+        numberButtons[i].textContent = i;
+        numberButtons[i].value = i;
+    }
+}
+
+function makeOperand() {
+    // if the displayValue, set the value to the number
+    if (displayOutput.textContent === 0) { }
+    // if the value is not 0, concat the two values together into a string
+}
+
+// Event Handlers
+numberButtons.forEach(button => {
+    button.addEventListener('click', makeOperand)
+})
+
+
+// Initialize application
+setButtonIDs();
+
+
+// update the display value
 
 
 // functions that populate the displayOutput when buttons are clicked
