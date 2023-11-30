@@ -21,6 +21,10 @@ function divide(operand1, operand2) {
 // create an operate function that takes in two operands and an operator as parameters
 
 function operate(operand1, operator, operand2) {
+    // within this operate function, create variables to store the operand values as well as the operator
+    // once you have those variables, they can link out to functions that actually generate the operand values
+
+
     if (operator === `+`) {
         return add(operand1, operand2)
     }
@@ -48,9 +52,9 @@ function operate(operand1, operator, operand2) {
 // if the value is not 0, concat the two values together into a string
 
 // Select individual buttons and the displayOutput div
-const displayValue = 0;
+let displayValue = 0;
 const displayOutput = document.querySelector('.displayOutput');
-displayOutput.textContent = displayValue;
+
 
 const numberButtons = document.querySelectorAll('.number');
 
@@ -64,14 +68,22 @@ function setButtonIDs() {
 }
 
 function updateOperand() {
-    // if the displayValue, set the value to the number
-    if (displayOutput.textContent === 0) { }
-    // if the value is not 0, concat the two values together into a string
+
 }
 
 // Event Handlers
 numberButtons.forEach(button => {
-    button.addEventListener('click', updateOperand)
+    // debugger
+    let operand1;
+    button.addEventListener('click', function (e) {
+        displayValue = parseInt(displayValue + this.value);
+        displayOutput.textContent = displayValue;
+        operand1 = displayValue;
+        console.log(this.value);
+        console.log(displayValue);
+        console.log(operand1);
+        return operand1
+    })
 })
 
 
