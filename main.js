@@ -21,10 +21,6 @@ function divide(operand1, operand2) {
 // create an operate function that takes in two operands and an operator as parameters
 
 function operate(operand1, operator, operand2) {
-    // within this operate function, create variables to store the operand values as well as the operator
-    // once you have those variables, they can link out to functions that actually generate the operand values
-
-
     // Logic for which operation to perform with the parameters
     if (operator === `+`) {
         return add(operand1, operand2)
@@ -71,21 +67,22 @@ function setupCalc() {
         button => button.addEventListener(
             'click',
             function (e) {
+                let operand;
                 storedNumbers.push(e.currentTarget.value);
-                const operand = storedNumbers.join('')
+                operand = storedNumbers.join('')
                 displayOutput.textContent = operand;
-                return displayOutput.value = operand;
             }
         )
     )
+
+    console.log(displayOutput.value);
 }
 
 
-
-
-
-// Initialize calculator;
+//initialize calculator
 setupCalc();
+
+
 
 
 
