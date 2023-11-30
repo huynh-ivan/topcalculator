@@ -47,41 +47,22 @@ function operate(operand1, operator, operand2) {
 
 
 
-//Setup the calculator
-function setupCalc() {
-    const displayOutput = document.querySelector('.displayOutput');
-    displayOutput.textContent = 0;
-    displayOutput.value = 0;
 
-    const storedNumbers = [];
 
-    //setup number buttons 
-    const numberButtons = document.querySelectorAll('.numberButton')
+//Get the displayOutput
+const displayOutput = document.querySelector('.displayOutput');
+displayOutput.textContent = 0;
+displayOutput.value = 0;
 
-    for (let i = 0; i < numberButtons.length; i++) {
-        numberButtons[i].id = i;
-        numberButtons[i].value = i;
-        numberButtons[i].textContent = i;
-    }
+//Get the number buttons
+const numberButtons = document.querySelectorAll('.numberButton');
 
-    //Event Listener
-    numberButtons.forEach(
-        button => button.addEventListener(
-            'click',
-            function (e) {
-                let operand;
-                storedNumbers.push(e.currentTarget.value);
-                operand = storedNumbers.join('')
-                displayOutput.textContent = operand;
-            }
-        )
-    )
+//Get the operator buttons
+const operatorButtons = document.querySelectorAll('.operatorButton');
 
-    console.log(displayOutput.value);
-}
 
-// Get Equal button
-const equalButton = document.querySelector('.equals');
+
+
 
 // Add EventListener
 equalButton.addEventListener('click', operate);
