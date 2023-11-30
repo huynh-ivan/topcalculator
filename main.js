@@ -56,10 +56,10 @@ let displayValue = 0;
 const displayOutput = document.querySelector('.displayOutput');
 
 
-const numberButtons = document.querySelectorAll('.number');
+const numberButtons = document.querySelectorAll('.numberButton');
 
 // set the id of each button
-function setButtonIDs() {
+function setupButtons() {
     for (let i = 0; i < numberButtons.length; i++) {
         numberButtons[i].id = i;
         numberButtons[i].textContent = i;
@@ -88,7 +88,7 @@ numberButtons.forEach(button => {
 
 
 // Initialize application
-setButtonIDs();
+setupButtons();
 
 
 // update the display value
