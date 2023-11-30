@@ -45,6 +45,8 @@ function operate(operand1, operator, operand2) {
 }
 
 
+
+
 //Setup the calculator
 function setupCalc() {
     const displayOutput = document.querySelector('.displayOutput');
@@ -78,6 +80,11 @@ function setupCalc() {
     console.log(displayOutput.value);
 }
 
+// Get Equal button
+const equalButton = document.querySelector('.equals');
+
+// Add EventListener
+equalButton.addEventListener('click', operate);
 
 //initialize calculator
 setupCalc();
