@@ -1,30 +1,53 @@
+// Global Variables
+let userInputValues = [];
+let currentOperand = 0; // 
+let storedOperand = 0;
+let operator = '';
+let result = 0;
+
+
 // create the add function
 function add(storedOperand, currentOperand) {
-    return result = storedOperand + currentOperand
+    displayOutput.textContent = storedOperand + currentOperand;
+    result = storedOperand + currentOperand;
+    console.log(result);
+    return result;
 }
 
 // create the subtract function
 function subtract(storedOperand, currentOperand) {
-    return storedOperand - currentOperand
+    displayOutput.textContent = storedOperand - currentOperand;
+    result = storedOperand - currentOperand
+    console.log(result);
+    return result;
 }
 
 // create the multiply function
 function multiply(storedOperand, currentOperand) {
-    return storedOperand * currentOperand
+    displayOutput.textContent = storedOperand * currentOperand;
+    result = storedOperand * currentOperand;
+    console.log(result);
+    return result;
 }
 
 // create the divide function
 function divide(storedOperand, currentOperand) {
-    return storedOperand / currentOperand
+    displayOutput.textContent = storedOperand / currentOperand;
+    result = storedOperand / currentOperand
+    console.log(result);
+    return result;
 }
 
 // create an operate function that takes in two operands and an operator as parameters
 
-function operate(storedOperand, operator, currentOperand) {
-    // console.log(storedOperand, operator, currentOperand);
+function operate(operator, storedOperand, currentOperand) {
     // Logic for which operation to perform with the parameters
+    console.log(operator);
+    console.log(storedOperand);
+    console.log(currentOperand);
+
     if (operator === `add`) {
-        return add(storedOperand, currentOperand)
+        return add(storedOperand, currentOperand);
     }
 
     if (operator === `subtract`) {
@@ -32,19 +55,22 @@ function operate(storedOperand, operator, currentOperand) {
     }
 
     if (operator === `multiply`) {
-        return multiply(storedOperand, currentOperand)
+        return multiply(storedOperand, currentOperand);
     }
 
     if (operator === `divide`) {
-        console.log(operator);
         return divide(storedOperand, currentOperand)
     }
 
-    if (operator !== `+` && operator !== `-` && operator !== `*` && operator !== `/`) {
-        return `Invalid operator provided. +, - , * , / are valid operators`
+    if (operator !== `add` && operator !== `subtract` && operator !== `multiply` && operator !== `divide` && operator !== `equals`) {
+        return `Invalid operator provided. +, - , * , / , = are valid operators`
     }
-    console.log(result);
-    return result;
+}
+
+function resetUserInput(result) {
+    storedOperand = result;
+    currentOperand = 0;
+    userInputValues = [];
 }
 
 
@@ -55,17 +81,12 @@ displayOutput.value = 0;
 
 //Get the number buttons
 
-let userInputValues = [];
-let currentOperand = 0; // 
-let storedOperand = 0;
-let operator = '';
-let result;
-
 const numberButtons = document.querySelectorAll('.numberButton');
 numberButtons.forEach(
     button => button.addEventListener('click', function (e) {
         userInputValues.push(e.currentTarget.id);
         currentOperand = parseInt(userInputValues.join(''));
+        displayOutput.textContent = currentOperand;
         return currentOperand;
     }
     )
@@ -85,7 +106,9 @@ operatorButtons.forEach(operatorButton =>
 )
 
 const equalButton = document.querySelector('#equals');
-equalButton.addEventListener('click', operate);
+equalButton.addEventListener('click', function () {
+    operate(operator, storedOperand, currentOperand);
+});
 
 
 
