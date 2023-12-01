@@ -1,52 +1,51 @@
 // create the add function
-function add(operand1, operand2) {
-    return operand1 + operand2
+function add(storedOperand, currentOperand) {
+    return result = storedOperand + currentOperand
 }
 
 // create the subtract function
-function subtract(operand1, operand2) {
-    return operand1 - operand2
+function subtract(storedOperand, currentOperand) {
+    return storedOperand - currentOperand
 }
 
 // create the multiply function
-function multiply(operand1, operand2) {
-    return operand1 * operand2
+function multiply(storedOperand, currentOperand) {
+    return storedOperand * currentOperand
 }
 
 // create the divide function
-function divide(operand1, operand2) {
-    return operand1 / operand2
+function divide(storedOperand, currentOperand) {
+    return storedOperand / currentOperand
 }
 
 // create an operate function that takes in two operands and an operator as parameters
 
-function operate(operand1, operator, operand2) {
+function operate(storedOperand, operator, currentOperand) {
+    // console.log(storedOperand, operator, currentOperand);
     // Logic for which operation to perform with the parameters
-    if (operator === `+`) {
-        return add(operand1, operand2)
+    if (operator === `add`) {
+        return add(storedOperand, currentOperand)
     }
 
-    if (operator === `-`) {
-        return subtract(operand1, operand2)
+    if (operator === `subtract`) {
+        return subtract(storedOperand, currentOperand)
     }
 
-    if (operator === `*`) {
-        return multiply(operand1, operand2)
+    if (operator === `multiply`) {
+        return multiply(storedOperand, currentOperand)
     }
 
-    if (operator === `/`) {
+    if (operator === `divide`) {
         console.log(operator);
-        return divide(operand1, operand2)
+        return divide(storedOperand, currentOperand)
     }
 
     if (operator !== `+` && operator !== `-` && operator !== `*` && operator !== `/`) {
         return `Invalid operator provided. +, - , * , / are valid operators`
     }
+    console.log(result);
+    return result;
 }
-
-
-
-
 
 
 //Get the displayOutput
@@ -55,21 +54,38 @@ displayOutput.textContent = 0;
 displayOutput.value = 0;
 
 //Get the number buttons
+
+let userInputValues = [];
+let currentOperand = 0; // 
+let storedOperand = 0;
+let operator = '';
+let result;
+
 const numberButtons = document.querySelectorAll('.numberButton');
+numberButtons.forEach(
+    button => button.addEventListener('click', function (e) {
+        userInputValues.push(e.currentTarget.id);
+        currentOperand = parseInt(userInputValues.join(''));
+        return currentOperand;
+    }
+    )
+)
 
 //Get the operator buttons
 const operatorButtons = document.querySelectorAll('.operatorButton');
+operatorButtons.forEach(operatorButton =>
+    operatorButton.addEventListener('click', function (e) {
+        operatorButton.value = operatorButton.id;
+        storedOperand = currentOperand;
+        currentOperand = 0;
+        userInputValues = [];
+        return operator = operatorButton.value;
+    }
+    )
+)
 
-
-
-
-
-// Add EventListener
+const equalButton = document.querySelector('#equals');
 equalButton.addEventListener('click', operate);
-
-//initialize calculator
-setupCalc();
-
 
 
 
