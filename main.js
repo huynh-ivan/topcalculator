@@ -5,14 +5,17 @@ function add(firstNumber, secondNumber) {
 
 function subtract(firstNumber, secondNumber) {
     displayOutput.textContent = firstNumber - secondNumber;
+    return firstNumber - secondNumber;
 }
 
 function multiply(firstNumber, secondNumber) {
     displayOutput.textContent = firstNumber * secondNumber;
+    return firstNumber * secondNumber;
 }
 
 function divide(firstNumber, secondNumber) {
     displayOutput.textContent = firstNumber / secondNumber;
+    return firstNumber / secondNumber;
 }
 
 // create an operate function that takes in two operands and an operator as parameters
@@ -24,15 +27,15 @@ function operate(firstNumber, operator, secondNumber) {
     }
 
     if (operator === `subtract`) {
-        return subtract(firstNumber, secondNumber)
+        return result = subtract(firstNumber, secondNumber);
     }
 
     if (operator === `multiply`) {
-        return multiply(firstNumber, secondNumber);
+        return result = multiply(firstNumber, secondNumber);
     }
 
     if (operator === `divide`) {
-        return divide(firstNumber, secondNumber)
+        return result = divide(firstNumber, secondNumber);
     }
 
     if (operator !== `add` && operator !== `subtract` && operator !== `multiply` && operator !== `divide` && operator !== `equals`) {
@@ -69,13 +72,13 @@ function go() {
     operatorButtons.forEach(operatorButton =>
         operatorButton.addEventListener('click', function () {
             // if the results history is not empty
-            console.log(resultHistory.length);
             if (resultHistory.length > 0) {
+                operator = operatorButton.id;
+                console.log(operator);
                 storedOperand = resultHistory[resultHistory.length - 1];
-                console.log(storedOperand);
+                return operator = operatorButton.id;
             } else {
                 // if the resultsHistory is empty, 
-                console.log(currentOperand);
                 storedOperand = currentOperand;
                 currentOperand = 0;
                 userInputValues = [];
@@ -87,22 +90,15 @@ function go() {
     //Get the equal button
     const equalButton = document.querySelector('#equals');
     equalButton.addEventListener('click', function () {
-
-        console.log(currentOperand);
-        console.log(storedOperand);
-        console.log(operator);
-        console.log(resultHistory);
-
         const result = operate(storedOperand, operator, currentOperand);
-        console.log(result);
-
         // After the result is computed, the currentOperand also resets to 0
         currentOperand = 0;
         userInputValues = [];
-
+        // operator = '';
         //store the result in the resultHistory
         resultHistory.push(result);
-        console.log(resultHistory, resultHistory.length);
+        console.log(result, resultHistory);
+        return result;
     })
 
     //How do I know if an equation has been already completed?
