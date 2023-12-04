@@ -1,11 +1,3 @@
-// Global Variables
-let userInputValues = [];
-let currentOperand = 0; // 
-let storedOperand = 0;
-let operator = '';
-let result = 0;
-
-
 function add(storedOperand, currentOperand) {
     displayOutput.textContent = storedOperand + currentOperand;
     storedOperand = storedOperand + currentOperand
@@ -36,14 +28,42 @@ function divide(storedOperand, currentOperand) {
 
 // create an operate function that takes in two operands and an operator as parameters
 
-function operate(operator, storedOperand, currentOperand) {
+function operate(firstNumber, operator, secondNumber) {
+    const userInputValues = [];
+    const currentOperand = 0; // 
+    const storedOperand = 0;
+    const operator = '';
+    const result = 0;
+
+    //Get the displayOutput
+    const displayOutput = document.querySelector('.displayOutput');
+    displayOutput.textContent = 0;
+    displayOutput.value = 0;
+
+    //Get the number buttons
+    const numberButtons = document.querySelectorAll('.numberButton');
+    numberButtons.forEach(
+        button => button.addEventListener('click', function (e) {
+            userInputValues.push(e.currentTarget.id);
+            currentOperand = parseInt(userInputValues.join(''));
+            displayOutput.textContent = currentOperand;
+            return currentOperand;
+        })
+    )
+
+    //Get the operator buttons
+    const operatorButtons = document.querySelectorAll('.operatorButton');
+    operatorButtons.forEach(operatorButton =>
+        operatorButton.addEventListener('click', function () {
+            // operatorButton.value = operatorButton.id;
+            storedOperand = currentOperand;
+            currentOperand = 0;
+            userInputValues = [];
+            return operator = operatorButton.id;
+        })
+    )
+
     // Logic for which operation to perform with the parameters
-    console.log(operator);
-    console.log(storedOperand);
-    console.log(currentOperand);
-
-    // You might need to declare variables and params separately to keep track of everything. To note: if you declare variables in here, you may not be able to access them "outside" the scope of this function w/o a closure.
-
     if (operator === `add`) {
         add(storedOperand, currentOperand); // is a function declaration actually that helpful?
     }
@@ -63,53 +83,13 @@ function operate(operator, storedOperand, currentOperand) {
     if (operator !== `add` && operator !== `subtract` && operator !== `multiply` && operator !== `divide` && operator !== `equals`) {
         return `Invalid operator provided. +, - , * , / , = are valid operators`
     }
+
+
+
 }
 
-// function resetUserInput(result) {
-//     storedOperand = result;
-//     currentOperand = 0;
-//     userInputValues = [];
-// }
 
 
-//Get the displayOutput
-const displayOutput = document.querySelector('.displayOutput');
-displayOutput.textContent = 0;
-displayOutput.value = 0;
-
-//Get the number buttons
-const numberButtons = document.querySelectorAll('.numberButton');
-numberButtons.forEach(
-    button => button.addEventListener('click', function (e) {
-        const userInputValues2 = [];
-        userInputValues.push(e.currentTarget.id);
-        userInputValues2.push(e.currentTarget.id);
-        console.log(userInputValues);
-        console.log(userInputValues2)
-        currentOperand = parseInt(userInputValues.join(''));
-        displayOutput.textContent = currentOperand;
-        return currentOperand;
-    }
-    )
-)
-
-//Get the operator buttons
-const operatorButtons = document.querySelectorAll('.operatorButton');
-operatorButtons.forEach(operatorButton =>
-    operatorButton.addEventListener('click', function () {
-        // operatorButton.value = operatorButton.id;
-        storedOperand = currentOperand;
-        currentOperand = 0;
-        userInputValues = [];
-        return operator = operatorButton.id;
-    }
-    )
-)
-
-const equalButton = document.querySelector('#equals');
-equalButton.addEventListener('click', function () {
-    operate(operator, storedOperand, currentOperand);
-});
 
 
 
