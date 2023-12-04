@@ -40,18 +40,23 @@ function operate(firstNumber, operator, secondNumber) {
     }
 }
 
+
+
 function go() {
     // initial values
     let userInputValues = [];
     let currentOperand = 0;
     let storedOperand = 0;
     let operator = '';
-    let computedResult = 0;
+    const resultHistory = [];
+
 
     //Get the number buttons
     const numberButtons = document.querySelectorAll('.numberButton');
     numberButtons.forEach(
         button => button.addEventListener('click', function (e) {
+            // if the resultsHistory is not empty
+            // if the results history is empty
             userInputValues.push(e.currentTarget.id);
             currentOperand = parseInt(userInputValues.join(''));
             displayOutput.textContent = currentOperand;
@@ -63,11 +68,13 @@ function go() {
     const operatorButtons = document.querySelectorAll('.operatorButton');
     operatorButtons.forEach(operatorButton =>
         operatorButton.addEventListener('click', function () {
+            // if the results history is not empty
+
+            // if the resultsHistory is empty, 
             // Updates the storedOperand var
             storedOperand = currentOperand;
-            // Set the currentOperand back to zero
             currentOperand = 0; // 
-            // Set the userInputValues array back to an empty array;
+            console.log('storedOperand has been stored')
             userInputValues = [];
             return operator = operatorButton.id;
         })
@@ -80,10 +87,26 @@ function go() {
         console.log(currentOperand);
         console.log(storedOperand);
         console.log(operator);
+        console.log(resultHistory);
 
         const result = operate(storedOperand, operator, currentOperand);
         console.log(result);
+
+        // After the result is computed, the currentOperand also resets to 0
+        currentOperand = 0;
+        userInputValues = [];
+
+        //store the result in the resultHistory
+        resultHistory.push(result);
+        console.log(resultHistory);
     })
+
+    //How do I know if an equation has been already completed?
+    // maybe I can store the results from an operation in an array
+    // if the array is empty, that means there is no "history" of operations
+    // if the array has at least one object, that means there have been previous operations
+    // I should be able to get result of the latest operation by using the array[length - 1]
+    // I may need to update the eventlisteners functions to check if there is a value in the resultHistory
 
     //Get the clear button
     const clear = document.querySelector('#clear');
