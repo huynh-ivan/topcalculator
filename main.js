@@ -9,9 +9,10 @@ let result = 0;
 // create the add function
 function add(storedOperand, currentOperand) {
     displayOutput.textContent = storedOperand + currentOperand;
-    result = storedOperand + currentOperand;
-    console.log(result);
-    return result;
+    storedOperand = storedOperand + currentOperand;
+    console.log(displayOutput.textContent);
+    console.log(storedOperand);
+    return storedOperand;
 }
 
 // create the subtract function
@@ -46,8 +47,10 @@ function operate(operator, storedOperand, currentOperand) {
     console.log(storedOperand);
     console.log(currentOperand);
 
+    // You might need to declare variables and params separately to keep track of everything. To note: if you declare variables in here, you may not be able to access them "outside" the scope of this function w/o a closure.
+
     if (operator === `add`) {
-        return add(storedOperand, currentOperand);
+        add(storedOperand, currentOperand);
     }
 
     if (operator === `subtract`) {
@@ -67,11 +70,11 @@ function operate(operator, storedOperand, currentOperand) {
     }
 }
 
-function resetUserInput(result) {
-    storedOperand = result;
-    currentOperand = 0;
-    userInputValues = [];
-}
+// function resetUserInput(result) {
+//     storedOperand = result;
+//     currentOperand = 0;
+//     userInputValues = [];
+// }
 
 
 //Get the displayOutput
@@ -80,7 +83,6 @@ displayOutput.textContent = 0;
 displayOutput.value = 0;
 
 //Get the number buttons
-
 const numberButtons = document.querySelectorAll('.numberButton');
 numberButtons.forEach(
     button => button.addEventListener('click', function (e) {
@@ -95,12 +97,12 @@ numberButtons.forEach(
 //Get the operator buttons
 const operatorButtons = document.querySelectorAll('.operatorButton');
 operatorButtons.forEach(operatorButton =>
-    operatorButton.addEventListener('click', function (e) {
-        operatorButton.value = operatorButton.id;
+    operatorButton.addEventListener('click', function () {
+        // operatorButton.value = operatorButton.id;
         storedOperand = currentOperand;
         currentOperand = 0;
         userInputValues = [];
-        return operator = operatorButton.value;
+        return operator = operatorButton.id;
     }
     )
 )
