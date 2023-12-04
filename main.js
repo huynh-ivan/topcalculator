@@ -6,16 +6,13 @@ let operator = '';
 let result = 0;
 
 
-// create the add function
 function add(storedOperand, currentOperand) {
     displayOutput.textContent = storedOperand + currentOperand;
-    storedOperand = storedOperand + currentOperand;
-    console.log(displayOutput.textContent);
+    storedOperand = storedOperand + currentOperand
     console.log(storedOperand);
-    return storedOperand;
+    return storedOperand // this output isn't stored so it's inaccessible
 }
 
-// create the subtract function
 function subtract(storedOperand, currentOperand) {
     displayOutput.textContent = storedOperand - currentOperand;
     result = storedOperand - currentOperand
@@ -23,7 +20,6 @@ function subtract(storedOperand, currentOperand) {
     return result;
 }
 
-// create the multiply function
 function multiply(storedOperand, currentOperand) {
     displayOutput.textContent = storedOperand * currentOperand;
     result = storedOperand * currentOperand;
@@ -31,7 +27,6 @@ function multiply(storedOperand, currentOperand) {
     return result;
 }
 
-// create the divide function
 function divide(storedOperand, currentOperand) {
     displayOutput.textContent = storedOperand / currentOperand;
     result = storedOperand / currentOperand
@@ -50,7 +45,7 @@ function operate(operator, storedOperand, currentOperand) {
     // You might need to declare variables and params separately to keep track of everything. To note: if you declare variables in here, you may not be able to access them "outside" the scope of this function w/o a closure.
 
     if (operator === `add`) {
-        add(storedOperand, currentOperand);
+        add(storedOperand, currentOperand); // is a function declaration actually that helpful?
     }
 
     if (operator === `subtract`) {
@@ -86,7 +81,11 @@ displayOutput.value = 0;
 const numberButtons = document.querySelectorAll('.numberButton');
 numberButtons.forEach(
     button => button.addEventListener('click', function (e) {
+        const userInputValues2 = [];
         userInputValues.push(e.currentTarget.id);
+        userInputValues2.push(e.currentTarget.id);
+        console.log(userInputValues);
+        console.log(userInputValues2)
         currentOperand = parseInt(userInputValues.join(''));
         displayOutput.textContent = currentOperand;
         return currentOperand;
