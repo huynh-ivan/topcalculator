@@ -1,44 +1,52 @@
-function add(storedOperand, currentOperand) {
-    displayOutput.textContent = storedOperand + currentOperand;
-    storedOperand = storedOperand + currentOperand
-    console.log(storedOperand);
-    return storedOperand // this output isn't stored so it's inaccessible
+function add(firstNumber, secondNumber) {
+    displayOutput.textContent = firstNumber + secondNumber;
+    return firstNumber + secondNumber;
 }
 
-function subtract(storedOperand, currentOperand) {
-    displayOutput.textContent = storedOperand - currentOperand;
-    result = storedOperand - currentOperand
-    console.log(result);
-    return result;
+function subtract(firstNumber, secondNumber) {
+    displayOutput.textContent = firstNumber - secondNumber;
 }
 
-function multiply(storedOperand, currentOperand) {
-    displayOutput.textContent = storedOperand * currentOperand;
-    result = storedOperand * currentOperand;
-    console.log(result);
-    return result;
+function multiply(firstNumber, secondNumber) {
+    displayOutput.textContent = firstNumber * secondNumber;
 }
 
-function divide(storedOperand, currentOperand) {
-    displayOutput.textContent = storedOperand / currentOperand;
-    result = storedOperand / currentOperand
-    console.log(result);
-    return result;
+function divide(firstNumber, secondNumber) {
+    displayOutput.textContent = firstNumber / secondNumber;
 }
 
 // create an operate function that takes in two operands and an operator as parameters
 
 function operate(firstNumber, operator, secondNumber) {
-    const userInputValues = [];
-    const currentOperand = 0; // 
-    const storedOperand = 0;
-    const operator = '';
-    const result = 0;
+    // Logic for which operation to perform with the parameters
+    if (operator === `add`) {
+        return result = add(firstNumber, secondNumber);
+    }
 
-    //Get the displayOutput
-    const displayOutput = document.querySelector('.displayOutput');
-    displayOutput.textContent = 0;
-    displayOutput.value = 0;
+    if (operator === `subtract`) {
+        return subtract(firstNumber, secondNumber)
+    }
+
+    if (operator === `multiply`) {
+        return multiply(firstNumber, secondNumber);
+    }
+
+    if (operator === `divide`) {
+        return divide(firstNumber, secondNumber)
+    }
+
+    if (operator !== `add` && operator !== `subtract` && operator !== `multiply` && operator !== `divide` && operator !== `equals`) {
+        return `Invalid operator provided. +, - , * , / , = are valid operators`
+    }
+}
+
+function go() {
+    // initial values
+    let userInputValues = [];
+    let currentOperand = 0;
+    let storedOperand = 0;
+    let operator = '';
+    let computedResult = 0;
 
     //Get the number buttons
     const numberButtons = document.querySelectorAll('.numberButton');
@@ -55,70 +63,46 @@ function operate(firstNumber, operator, secondNumber) {
     const operatorButtons = document.querySelectorAll('.operatorButton');
     operatorButtons.forEach(operatorButton =>
         operatorButton.addEventListener('click', function () {
-            // operatorButton.value = operatorButton.id;
+            // Updates the storedOperand var
             storedOperand = currentOperand;
-            currentOperand = 0;
+            // Set the currentOperand back to zero
+            currentOperand = 0; // 
+            // Set the userInputValues array back to an empty array;
             userInputValues = [];
             return operator = operatorButton.id;
         })
     )
 
-    // Logic for which operation to perform with the parameters
-    if (operator === `add`) {
-        add(storedOperand, currentOperand); // is a function declaration actually that helpful?
-    }
+    //Get the equal button
+    const equalButton = document.querySelector('#equals');
+    equalButton.addEventListener('click', function () {
 
-    if (operator === `subtract`) {
-        return subtract(storedOperand, currentOperand)
-    }
+        console.log(currentOperand);
+        console.log(storedOperand);
+        console.log(operator);
 
-    if (operator === `multiply`) {
-        return multiply(storedOperand, currentOperand);
-    }
+        const result = operate(storedOperand, operator, currentOperand);
+        console.log(result);
+    })
 
-    if (operator === `divide`) {
-        return divide(storedOperand, currentOperand)
-    }
-
-    if (operator !== `add` && operator !== `subtract` && operator !== `multiply` && operator !== `divide` && operator !== `equals`) {
-        return `Invalid operator provided. +, - , * , / , = are valid operators`
-    }
-
-
-
+    //Get the clear button
+    const clear = document.querySelector('#clear');
+    clear.addEventListener('click', function () {
+        displayOutput.textContent = 0;
+        userInputValues = [];
+        currentOperand = 0;
+        storedOperand = 0;
+        operator = '';
+    })
 }
 
+//Get the displayOutput
+const displayOutput = document.querySelector('.displayOutput');
+displayOutput.textContent = 0;
 
 
-
-
-
-
-
-/*Number buttons behavior
-    store the value of number buttons somehow -> possibly an array
-    make the display value = the parseInt(storedNumbers)
-    
-    when a button is clicked, push the number into the array
-        
-    when the array is parsed, it should concat all of the items in it
-        i.e. clicking "9"and then "9" gives me "99" not "18"
-    
-    
-*/
-
-/* Operator button behavior
-    return the corresponding operator symbol to the operate() function
-    on a calculator, clicking an operator button 'locks' in an operand; 
-        need to store this operand somehow
-
-*/
-
-
-/* Equal button behavior
-    call the operate() function
-
-*/
+// initialize application 
+go();
 
 
 
