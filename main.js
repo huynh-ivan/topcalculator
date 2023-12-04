@@ -43,8 +43,6 @@ function operate(firstNumber, operator, secondNumber) {
     }
 }
 
-
-
 function go() {
     // initial values
     let userInputValues = [];
@@ -94,19 +92,12 @@ function go() {
         // After the result is computed, the currentOperand also resets to 0
         currentOperand = 0;
         userInputValues = [];
-        // operator = '';
+        operator = '';
         //store the result in the resultHistory
         resultHistory.push(result);
         console.log(result, resultHistory);
         return result;
     })
-
-    //How do I know if an equation has been already completed?
-    // maybe I can store the results from an operation in an array
-    // if the array is empty, that means there is no "history" of operations
-    // if the array has at least one object, that means there have been previous operations
-    // I should be able to get result of the latest operation by using the array[length - 1]
-    // I may need to update the eventlisteners functions to check if there is a value in the resultHistory
 
     //Get the clear button
     const clear = document.querySelector('#clear');
@@ -114,7 +105,7 @@ function go() {
         console.clear();
         displayOutput.textContent = 0;
         userInputValues = [];
-        currentOperand = 0; // it seems that there are multiple places where the currentOperand and userInputValues must be reset
+        currentOperand = 0;
         storedOperand = 0;
         operator = '';
         resultHistory = [];
