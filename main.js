@@ -48,7 +48,7 @@ function go() {
     let currentOperand = 0;
     let storedOperand = 0;
     let operator = '';
-    const resultHistory = [];
+    let resultHistory = [];
 
 
     //Get the number buttons
@@ -69,14 +69,18 @@ function go() {
     operatorButtons.forEach(operatorButton =>
         operatorButton.addEventListener('click', function () {
             // if the results history is not empty
-
-            // if the resultsHistory is empty, 
-            // Updates the storedOperand var
-            storedOperand = currentOperand;
-            currentOperand = 0; // 
-            console.log('storedOperand has been stored')
-            userInputValues = [];
-            return operator = operatorButton.id;
+            console.log(resultHistory.length);
+            if (resultHistory.length > 0) {
+                storedOperand = resultHistory[resultHistory.length - 1];
+                console.log(storedOperand);
+            } else {
+                // if the resultsHistory is empty, 
+                console.log(currentOperand);
+                storedOperand = currentOperand;
+                currentOperand = 0;
+                userInputValues = [];
+                return operator = operatorButton.id;
+            }
         })
     )
 
@@ -98,7 +102,7 @@ function go() {
 
         //store the result in the resultHistory
         resultHistory.push(result);
-        console.log(resultHistory);
+        console.log(resultHistory, resultHistory.length);
     })
 
     //How do I know if an equation has been already completed?
@@ -114,9 +118,10 @@ function go() {
         console.clear();
         displayOutput.textContent = 0;
         userInputValues = [];
-        currentOperand = 0;
+        currentOperand = 0; // it seems that there are multiple places where the currentOperand and userInputValues must be reset
         storedOperand = 0;
         operator = '';
+        resultHistory = [];
     })
 }
 
