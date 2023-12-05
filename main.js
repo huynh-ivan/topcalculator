@@ -17,6 +17,9 @@ function multiply(firstNumber, secondNumber) {
 }
 
 function divide(firstNumber, secondNumber) {
+    if (secondNumber === 0) {
+        return showSnarkyMessage();
+    }
     const quotient = firstNumber / secondNumber
     displayOutput.textContent = quotient;
     return quotient;
@@ -39,6 +42,10 @@ function operate(firstNumber = 0, operator, secondNumber = 0) {
         return result = multiply(firstNumber, secondNumber);
     }
 
+    if (operator === `divide` && secondNumber === 0) {
+        showSnarkyMessage()
+    }
+
     if (operator === `divide`) {
         return result = divide(firstNumber, secondNumber);
     }
@@ -46,6 +53,12 @@ function operate(firstNumber = 0, operator, secondNumber = 0) {
     if (operator !== `add` && operator !== `subtract` && operator !== `multiply` && operator !== `divide`) {
         return handleInvalidOperator();
     }
+}
+
+function showSnarkyMessage() {
+    const snark = `Snarky snark snark`
+    displayOutput.textContent = snark;
+    console.log('you sneaky dog you');
 }
 
 function clearHistory() {
@@ -81,7 +94,6 @@ function go() {
     const numberButtons = document.querySelectorAll('.numberButton');
     numberButtons.forEach(
         button => button.addEventListener('click', function (e) {
-
             userInputValues.push(e.currentTarget.id);
             currentOperand = parseInt(userInputValues.join(''));
             displayOutput.textContent = currentOperand;
@@ -98,13 +110,13 @@ function go() {
                 storedOperand = resultHistory[resultHistory.length - 1];
                 operator = operatorButton.id;
                 return operator = operatorButton.id;
-            } else {
-                // if the resultsHistory is empty, 
-                storedOperand = currentOperand;
-                currentOperand = 0;
-                userInputValues = [];
-                return operator = operatorButton.id;
             }
+            // if the resultsHistory is empty, 
+            storedOperand = currentOperand;
+            currentOperand = 0;
+            userInputValues = [];
+            return operator = operatorButton.id;
+
         })
     )
 
